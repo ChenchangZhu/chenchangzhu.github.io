@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chenchang Zhu · Mathematisches Institut, Göttingen</title>
+<meta name="description" content="Chenchang Zhu, Professor at the Mathematisches Institut, Georg-August-Universität Göttingen. Higher structures in differential geometry: higher and derived groupoids, algebroids, shifted symplectic structures, differentiable stacks; Poisson and symplectic geometry.">
+<link rel="icon" href="logo.png">
+<style>
+  /* Computer Modern (CM Unicode, SIL Open Font License), self-hosted */
+  @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-roman.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-500-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+  @font-face { font-family: "CMU Serif"; src: url("fonts/cmu-serif-700-roman.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "CMU Typewriter"; src: url("fonts/cmu-typewriter-text-500-roman.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+  /* Two colours: the board and the chalk. */
+  :root {
+    --board: #1f2723;
+    --chalk: #ece6d6;
+    --dim: rgba(236, 230, 214, .66);
+    --faint: rgba(236, 230, 214, .16);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; color: var(--chalk); background: var(--board);
+         font: 19px/1.62 "CMU Serif", "Latin Modern Roman", "Times New Roman", serif; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--chalk); text-decoration: underline; text-decoration-color: var(--faint);
+      text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--chalk); }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 16px; }
+  .tt { font-family: "CMU Typewriter", ui-monospace, monospace; font-size: .86em; }
+
+  /* Hero: the blackboard */
+  .hero { position: relative; border-bottom: 1px solid var(--faint);
+          background:
+            linear-gradient(90deg, rgba(31,39,35,.92) 0%, rgba(31,39,35,.80) 48%, rgba(31,39,35,.35) 80%),
+            radial-gradient(900px 500px at 70% 30%, rgba(236,230,214,.05), transparent 70%),
+            url("hero-bg.svg") center top / cover no-repeat, var(--board); }
+  .hero .wrap { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center;
+                padding-top: 56px; padding-bottom: 56px; }
+  @media (min-width: 760px) { .hero .wrap { grid-template-columns: 1.35fr 1fr; padding-top: 96px; padding-bottom: 88px; } }
+  .brand { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; }
+  .brand img { width: 46px; height: 46px; background: var(--chalk); border-radius: 3px; padding: 3px; }
+  .brand p { margin: 0; color: var(--dim); font-size: .9rem; line-height: 1.35; }
+  h1 { font-weight: 400; font-size: clamp(2.3rem, 7.5vw, 3.6rem); line-height: 1.05; margin: 0 0 6px; letter-spacing: .01em; }
+  .zh { color: var(--dim); margin: 0 0 20px; font-size: 1.15rem; letter-spacing: .25em; }
+  .lede { margin: 0; max-width: 31em; }
+  .portrait { position: relative; justify-self: center; max-width: 330px; width: 100%; }
+  .portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 60%;
+                  border: 1px solid var(--faint); }
+
+  nav { position: sticky; top: 0; z-index: 5; background: rgba(31,39,35,.94);
+        backdrop-filter: blur(6px); border-bottom: 1px solid var(--faint); }
+  nav .wrap { display: flex; gap: 20px; overflow-x: auto; white-space: nowrap; padding-top: 11px; padding-bottom: 11px; font-size: .92rem; }
+  nav a { text-decoration: none; color: var(--dim); }
+  nav a:hover { color: var(--chalk); }
+
+  main { background: url("section-bg.svg") center 0 / 1600px auto repeat-y; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--faint); }
+  h2 { font-weight: 400; font-size: 1.45rem; margin: 0 0 22px; }
+  h2 .n { margin-right: .5em; }
+  h3 { font-weight: 400; font-style: italic; font-size: 1.08rem; margin: 30px 0 10px; color: var(--dim); }
+  p { margin: 0 0 14px; max-width: 40em; }
+  ul.items { list-style: none; padding: 0; margin: 0; }
+  ul.items li { padding: 10px 0; border-top: 1px solid var(--faint); display: grid; grid-template-columns: 1fr; gap: 0 18px; }
+  ul.items li:last-child { border-bottom: 1px solid var(--faint); }
+  @media (min-width: 680px) { ul.items li { grid-template-columns: 130px 1fr; } }
+  .when { color: var(--dim); }
+  .meta { color: var(--dim); font-size: .92rem; }
+  ul.bullets { margin: 0; padding-left: 1.2em; max-width: 40em; }
+  ul.bullets li { margin-bottom: 8px; }
+
+  .links { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--faint); border-left: 1px solid var(--faint); }
+  @media (min-width: 680px) { .links { grid-template-columns: repeat(4, 1fr); } }
+  .links a { display: block; padding: 16px 18px; border-right: 1px solid var(--faint); border-bottom: 1px solid var(--faint);
+             text-decoration: none; background: rgba(31,39,35,.7); }
+  .links a:hover { background: rgba(236,230,214,.06); }
+  .links .t { display: block; font-size: 1.05rem; }
+  .links .d { color: var(--dim); font-size: .85rem; }
+
+  .photos { display: grid; gap: 14px; grid-template-columns: 1fr; margin-top: 30px; }
+  @media (min-width: 680px) { .photos { grid-template-columns: repeat(3, 1fr); } }
+  figure { margin: 0; }
+  figure img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--faint); }
+  figcaption { color: var(--dim); font-size: .86rem; line-height: 1.5; margin-top: 10px; }
+  figcaption .cap { display: block; color: var(--chalk); font-style: italic; margin-bottom: 4px; }
+  @media (min-width: 680px) { .photos { align-items: start; } }
+
+  .mailbtn { display: inline-block; margin: 4px 0 10px; padding: 9px 20px; border: 1px solid var(--chalk);
+             text-decoration: none; }
+  .mailbtn:hover { background: var(--chalk); color: var(--board); }
+  .contact { border: 1px solid var(--faint); padding: 22px 24px; background: rgba(31,39,35,.75); overflow-x: auto; }
+  .contact table { border-collapse: collapse; }
+  .contact td { padding: 4px 18px 4px 0; vertical-align: top; }
+  .contact td:first-child { color: var(--dim); font-style: italic; }
+  footer { padding: 26px 0 46px; color: var(--dim); font-size: .85rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="brand"><img src="logo.png" alt="University of Göttingen logo" width="69" height="68">
+        <p>Mathematisches Institut<br>Georg-August-Universität Göttingen</p></div>
+      <h1>Chenchang Zhu</h1>
+      <p class="zh">朱晨畅</p>
+      <p class="lede">Professor of Mathematics. Higher structures in differential geometry: Lie algebroids,
+         Lie groupoids, differentiable stacks and their higher analogues, and (shifted) Poisson and
+         symplectic geometry.</p>
+    </div>
+    <div class="portrait"><img src="portrait.jpg" alt="Chenchang Zhu" width="900" height="1200"></div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#about">About</a><a href="#cv">CV</a><a href="#research">Research</a><a href="#seminars">Seminars</a>
+  <a href="#students">Students</a><a href="#activities">Activities</a><a href="#service">Service</a><a href="#contact">Contact</a><a href="mailto:chenchang.zhu@mathematik.uni-goettingen.de">Email</a>
+</div></nav>
+
+<main><div class="wrap">
+
+<section id="about">
+  <h2><span class="n">§1.</span>About</h2>
+  <p>I am a mathematician working on <em>higher structures in differential geometry</em>: how Lie algebroids,
+     Lie groupoids, differentiable stacks and their higher analogues organise the symmetries of geometric objects,
+     and what they tell us about (shifted) Poisson and (shifted) symplectic geometry and mathematical physics.</p>
+  <p>I have been at the University of Göttingen since 2008, first as Junior Professor and, since 2013, as a tenured
+     professor. In 2025 I was the inaugural holder of the
+     <a href="https://www.crm.cat/chenchang-zhu-inaugural-crm-maria-de-maeztu-chair-of-excellence/">CRM–María de Maeztu Chair of Excellence</a>
+     at the Centre de Recerca Matemàtica in Barcelona.</p>
+  <p>Before Göttingen, I was a maître de conférences at the
+     <a href="https://www-fourier.univ-grenoble-alpes.fr/">Institut Fourier</a> in Grenoble, a postdoc with
+     <a href="https://people.math.ethz.ch/~felder/">Giovanni Felder</a> at ETH Zürich, a PhD student with
+     <a href="https://math.berkeley.edu/people/faculty/alan-d-weinstein">Alan Weinstein</a> at UC Berkeley,
+     and an undergraduate at Peking University. Before that, I was engaged in mathematical competitions:
+     I won a gold medal with a perfect score at the 1995 International Mathematical Olympiad.</p>
+  <div class="photos">
+    <figure><img src="imo1995.jpg" alt="Chenchang Zhu as a member of the Chinese IMO team in 1995, in front of Niagara Falls" width="1200" height="787" loading="lazy">
+      <figcaption><span class="cap">IMO 1995, Canada.</span>
+        With the Chinese team at Niagara Falls during the 1995 International Mathematical Olympiad in Toronto,
+        where I won a gold medal with a perfect 42/42. Getting there began as a teenager, when I worked through
+        all of the high-school mathematics textbooks in a single summer. Afterwards I studied mathematics at
+        Peking University, graduating with a BS in 1999 before leaving for graduate school in the United States.</figcaption></figure>
+    <figure><img src="travels.jpg" alt="Chenchang Zhu during her Berkeley years, leaning against a tree, wearing a red scarf" width="269" height="202" loading="lazy">
+      <figcaption><span class="cap">UC Berkeley, 1999–2004.</span>
+        I arrived in Berkeley in 1999, at the height of the dot-com boom, when Silicon Valley was changing the
+        whole Bay Area, while I was rather unconscious of it. I wrote my thesis with Alan Weinstein on
+        integrating Lie algebroids via stacks. Graduate school was a beautiful time for me:
+        learning to live in a new culture and exploring life. It was also at Karen Uhlenbeck's Women and
+        Mathematics programme at IAS Princeton that I became convinced I could become a professor.</figcaption></figure>
+    <figure><img src="now.jpg" alt="Chenchang Zhu in a straw sun hat in Naples during Poisson 2024" width="900" height="1200" loading="lazy" style="object-position:50% 72%">
+      <figcaption><span class="cap">Poisson 2024, Napoli, 8–12 July 2024.</span>
+        Poisson 2024 in Naples, part of the biennial Poisson conference series of the Poisson geometry community.
+        Two years earlier I had co-organised Poisson 2022 in Barcelona and Madrid; the next edition, Poisson 2026,
+        took place in Antwerp and Leuven.</figcaption></figure>
+  </div>
+</section>
+
+<section id="cv">
+  <h2><span class="n">§2.</span>CV and publications</h2>
+  <div class="links">
+    <a href="https://www.dropbox.com/scl/fi/xjwlnqp6ejmvmcsdydi34/cvzhu.pdf?rlkey=q0g6i97n2qd7uejgfbdy4nmmy&amp;st=3bff5670&amp;dl=0"><span class="t">CV</span><span class="d">PDF</span></a>
+    <a href="https://arxiv.org/a/zhu_c_1.html"><span class="t">arXiv</span><span class="d">Articles</span></a>
+    <a href="https://scholar.google.com/citations?user=hmjsBqMAAAAJ&amp;hl=en"><span class="t">Google Scholar</span><span class="d">Citations</span></a>
+    <a href="https://mathscinet.ams.org/mathscinet/author?authorId=738156"><span class="t">MathSciNet</span><span class="d">Author profile</span></a>
+  </div>
+</section>
+
+<section id="research">
+  <h2><span class="n">§3.</span>Research interests</h2>
+  <ul class="bullets">
+    <li>Higher structures in differential geometry: higher/derived groupoids, algebroids/d.g. manifolds,
+        shifted symplectic structures, differentiable stacks and gerbes.</li>
+    <li>Poisson and symplectic geometry, mathematical physics.</li>
+  </ul>
+  <h3>Selected papers</h3>
+  <ul class="items">
+    <li><span class="when tt">2026</span><span>Duals of higher vector spaces<br>
+        <span class="meta">with S. Ronchi · J. Geom. Phys. · <a href="https://arxiv.org/abs/2407.03306">arXiv:2407.03306</a></span></span></li>
+    <li><span class="when tt">2026</span><span>Differentiating L<sub>∞</sub> groupoids<br>
+        <span class="meta">with D. Li, L. Ryvkin, A. Wessel · J. Math. Pures Appl. · <a href="https://arxiv.org/abs/2309.00901">arXiv:2309.00901</a></span></span></li>
+    <li><span class="when tt">2024</span><span>Generalized symmetries in singularity-free nonlinear σ models and their disordered phases<br>
+        <span class="meta">with S. D. Pace, X.-G. Wen · Phys. Rev. B · <a href="https://arxiv.org/abs/2310.08554">arXiv:2310.08554</a></span></span></li>
+    <li><span class="when tt">2023</span><span>Shifted symplectic higher Lie groupoids and classifying spaces<br>
+        <span class="meta">with M. Cueca · Adv. Math. · <a href="https://arxiv.org/abs/2112.01417">arXiv:2112.01417</a></span></span></li>
+    <li><span class="when tt">2021</span><span>The controlling L<sub>∞</sub>-algebra, cohomology and homotopy of embedding tensors and Lie–Leibniz triples<br>
+        <span class="meta">with Y. Sheng, R. Tang · Comm. Math. Phys. · <a href="https://arxiv.org/abs/2009.11096">arXiv:2009.11096</a></span></span></li>
+    <li><span class="when tt">2020</span><span>On the homotopy theory for Lie ∞-groupoids, with an application to integrating L<sub>∞</sub>-algebras<br>
+        <span class="meta">with C. L. Rogers · Algebr. Geom. Topol. · <a href="https://arxiv.org/abs/1609.01394">arXiv:1609.01394</a></span></span></li>
+    <li><span class="when tt">2017</span><span>Higher extensions of Lie algebroids<br>
+        <span class="meta">with Y. Sheng · Commun. Contemp. Math. · <a href="https://arxiv.org/abs/1103.5920">arXiv:1103.5920</a></span></span></li>
+    <li><span class="when tt">2006</span><span>Lie II theorem for Lie algebroids via higher groupoids<br>
+        <span class="meta"><a href="https://arxiv.org/abs/math/0701024">arXiv:math/0701024</a></span></span></li>
+  </ul>
+</section>
+
+<section id="seminars">
+  <h2><span class="n">§4.</span>Seminars</h2>
+  <ul class="items">
+    <li><span class="when">Seminar</span><span><a href="https://pad.gwdg.de/s/qHgFq5LcZ">Higher Structures Seminar</a></span></li>
+    <li><span class="when">Colloquium</span><span><a href="https://www.uni-goettingen.de/en/calendar/129041.html">Kolloquium der Mathematischen Gesellschaft und GRK</a><br>
+        <span class="meta">Thursdays, 16:15–17:15, Sitzungszimmer, Mathematisches Institut</span></span></li>
+  </ul>
+</section>
+
+<section id="students">
+  <h2><span class="n">§5.</span>Students</h2>
+  <h3 style="margin-top:0">PhD students</h3>
+  <ul class="items">
+    <li><span class="when">current</span><span><a href="https://milenaw.github.io/">Milena Weiershausen</a></span></li>
+  </ul>
+  <h3>Graduated</h3>
+  <ul class="items">
+    <li><span class="when">PhD</span><span><a href="https://kalinkrish.github.io/">Kalin Krishna</a></span></li>
+    <li><span class="when">PhD</span><span><a href="https://arxiv.org/abs/2402.07857">Florian Dorsch</a></span></li>
+    <li><span class="when tt">2025</span><span><a href="https://stefano-ronchi.github.io/">Stefano Ronchi</a><br>
+        <span class="meta">Duals of higher vector bundles and cotangents of Lie 2-groupoids</span></span></li>
+    <li><span class="when tt">2025</span><span><a href="https://sites.google.com/view/hao-xu/home">Hao Xu</a><br>
+        <span class="meta">On étale algebras and fusion 2-categories</span></span></li>
+    <li><span class="when tt">2020</span><span><a href="https://scholar.google.co.uk/citations?user=tBkoie8AAAAJ&amp;hl=de">Malte Dehling</a><br>
+        <span class="meta">Symmetric homotopy theory for operads and weak Lie 3-algebras ·
+        <a href="https://www.dropbox.com/scl/fi/q6gt011zgkpm601qehqk7/ma.pdf?rlkey=buack31njti5eyzlz21bdoyzp&amp;st=u37pwwck&amp;dl=0">Master thesis</a></span></span></li>
+    <li><span class="when tt">2014</span><span>Du Li<br>
+        <span class="meta"><a href="https://arxiv.org/abs/1512.04209">Higher groupoid actions, bibundles, and differentiation</a></span></span></li>
+  </ul>
+  <h3>Selected Master and Bachelor theses</h3>
+  <ul class="items">
+    <li><span class="when">Abel Milor</span><span><a href="https://arxiv.org/abs/2305.06282">About extending the Chern–Weil classification to the simplicial principal bundles</a></span></li>
+    <li><span class="when">Florian Dorsch</span><span><a href="https://owncloud.gwdg.de/index.php/s/XFvsd2dSXR9CHE5">Lie 2-groups and symplectic Lie n-groupoids</a></span></li>
+    <li><span class="when">Milena Weiershausen</span><span><a href="https://owncloud.gwdg.de/index.php/s/0fHunUnfdPBzr0s">An embedding tensor and corresponding Lie 2-algebra for the exceptional Lie group E<sub>7</sub></a><br>
+        <span class="meta"><a href="https://youtu.be/AGZjvgBGsHo">Higher structures and embedding tensors</a> is a talk I gave on related issues.</span></span></li>
+    <li><span class="when">Daniel Missal</span><span><a href="https://owncloud.gwdg.de/index.php/s/spxYD8Z84OXpKdC">A TQFT-inspired explicit construction of higher groups</a></span></li>
+  </ul>
+</section>
+
+<section id="activities">
+  <h2><span class="n">§6.</span>Academic activities</h2>
+  <ul class="items">
+    <li><span class="when tt">2026</span><span><a href="https://wis.kuleuven.be/events/2026_poisson/poisson2026">Poisson 2026</a>, August, Antwerp and Leuven</span></li>
+    <li><span class="when tt">2025</span><span><a href="https://www.crm.cat/chenchang-zhu-inaugural-crm-maria-de-maeztu-chair-of-excellence/">CRM–MdM Chair of Excellence</a> ·
+        <a href="https://youtu.be/HgfvCAR-EQc">Interview</a> · <a href="https://youtu.be/dRfUardpoOo">Colloquium</a></span></li>
+    <li><span class="when tt">2025</span><span><a href="https://somma.es/articles/a-day-of-higher-structures-in-symplectic-and-poisson-geometry-with-summer-tapas-at-upc-barcelona/">A Summer Tapas Invitation to Higher Structures in Symplectic and Poisson Geometry</a>, July 7, UPC Barcelona<br>
+        <span class="meta">Mini-course: Higher structures – introduction to derived n-groupoids</span></span></li>
+    <li><span class="when tt">2024</span><span><a href="https://sites.google.com/view/poisson2024/poisson-2024">Poisson 2024</a>, July 8–12, Napoli</span></li>
+    <li><span class="when tt">2023</span><span><a href="https://www.amherst.edu/academiclife/departments/mathematics-statistics/news/gone-fishing">Gone Fishing 2023</a>, March 16–19, Amherst</span></li>
+    <li><span class="when tt">2022</span><span>Co-organiser, <a href="https://www.esi.ac.at/events/e430/">Higher Structures and Field Theory</a>, August 2022, ESI Vienna</span></li>
+    <li><span class="when tt">2022</span><span>Co-organiser, <a href="https://www.icmat.es/congresos/2022/poisson/index.php">Poisson 2022</a>, July 2022, Barcelona–Madrid</span></li>
+    <li><span class="when tt">2022</span><span>Mini-course on higher symplectic groupoids,
+        <a href="https://sites.google.com/tcd.ie/hmispringlectureseries2022/home">online at HMI</a><br>
+        <span class="meta"><a href="https://www.dropbox.com/scl/fi/molps4ojcmurg4yp1ldis/Talks-minicourse.pdf?rlkey=e7uy3z2yfx6us1py22o9pdhxb&amp;st=bax0w874&amp;dl=0">Lecture notes</a> ·
+        Lectures <a href="https://youtu.be/EyOO2nagMMI">1</a>, <a href="https://youtu.be/qfGrK7Ndzwg">2</a>,
+        <a href="https://youtu.be/vLNUDt32ILQ">3</a>, <a href="https://www.youtube.com/watch?v=6zDM3IxaRJg">4</a> ·
+        <a href="https://sites.google.com/tcd.ie/hmispringlectureseries2022/resources">all four</a> ·
+        <a href="https://space.bilibili.com/500852201">bilibili</a> (without YouTube)</span></span></li>
+    <li><span class="when">Events</span><span><a href="https://ncatlab.org/higherstructureconferences/show/HomePage">Complete list of higher structure events that I (co-)organised</a></span></li>
+  </ul>
+</section>
+
+<section id="service">
+  <h2><span class="n">§7.</span>Academic and non-academic service</h2>
+  <ul class="bullets">
+    <li>I am <a href="https://math.uni-goettingen.de/personen/equal.html">Gleichstellungsbeauftragte</a>
+        (equal opportunities officer) of the Mathematical Institute. We have an active women-in-math circle,
+        <a href="https://wimgo.pages.gwdg.de/">WiMgo!</a> (Women in Math Göttingen).</li>
+    <li>I organise a course followed by participation in the <a href="https://www.imc-math.org.uk/">IMC</a>
+        (International Mathematics Competition for University Students). Our team ranked no. 6 worldwide in 2016;
+        later Christian Bernert won a Grand First Prize (top 0.5%). In 2023, Male Hesse obtained a Grand First Prize
+        as the only top female participant.</li>
+  </ul>
+</section>
+
+<section id="contact" style="border-bottom:0">
+  <h2><span class="n">§8.</span>Contact</h2>
+  <p><a class="mailbtn" href="mailto:chenchang.zhu@mathematik.uni-goettingen.de">✉ Write to me</a></p>
+  <div class="contact">
+    <table>
+      <tr><td>Email</td><td class="tt"><a href="mailto:chenchang.zhu@mathematik.uni-goettingen.de">chenchang.zhu@mathematik.uni-goettingen.de</a></td></tr>
+      <tr><td>Phone</td><td>+49 551 39 27799</td></tr>
+      <tr><td>Fax</td><td>+49 551 39 22985</td></tr>
+      <tr><td>Address</td><td>Mathematisches Institut, Georg-August-Universität Göttingen<br>Bunsenstraße 3–5, 37073 Göttingen, Germany</td></tr>
+    </table>
+  </div>
+</section>
+
+</div></main>
+<footer class="wrap">© Chenchang Zhu · Set in Computer Modern · Board formulas from the mini-course <em>Higher symplectic stacks in differential geometry</em></footer>
+</body>
+</html>
